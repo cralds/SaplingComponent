@@ -1,0 +1,22 @@
+主工程  ->  moduleA  -> moduleB       可行
+
+主工程  -> moduleA  ->   moduleB(上传maven)   可行
+
+主工程  -> moduleA(上传maven)  ->   moduleB(上传maven)   不可行（主工程也依赖moduleB则可行）
+
+主工程  -> moduleA  ->   moduleB(上传maven)    可行
+	   -> moduleC  ->   moduleB(上传maven)
+
+主工程  -> moduleA  ->   moduleB(打包aar)    需要共享libs 可行
+	   -> moduleC  ->   moduleB(打包aar)
+
+共享libs方法：
+allprojects {
+    repositories {
+        google()
+        jcenter()
+        flatDir {
+            dirs 'libs',project(':mine').file('libs')
+       }
+    }
+}
