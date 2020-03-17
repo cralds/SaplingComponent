@@ -18,6 +18,7 @@ public class MainActivity extends AppCompatActivity {
     private List<Fragment> fragmentList = new ArrayList<>();
     private TabLayout tabLayout;
     private ViewPager viewPager;
+    private AIDLServiceConnection serviceConnection;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -51,5 +52,23 @@ public class MainActivity extends AppCompatActivity {
         tabLayout.setupWithViewPager(viewPager);
         tabLayout.getTabAt(0).setText("首页");
         tabLayout.getTabAt(1).setText("商城");
+
+
+
+
+        findViewById(R.id.btnRequest).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                serviceConnection.request();
+            }
+        });
+        serviceConnection = new AIDLServiceConnection();
+        serviceConnection.bindService(this);
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        serviceConnection.unBindService(this);
     }
 }

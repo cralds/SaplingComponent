@@ -3,8 +3,16 @@
     package="com.sapling.loginmodule">
 
     <application>
-        <activity android:name=".LoginActivity">
-        </activity>
+        <service
+            android:name=".MessengerService"
+            android:enabled="true"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="com.sapling.service.LOGIN"/>
+            </intent-filter>
+        </service>
+
+        <activity android:name=".LoginActivity"></activity>
     </application>
 
 </manifest>

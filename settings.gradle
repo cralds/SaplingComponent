@@ -1,1 +1,1 @@
-include ':app', ':compilemodule', ':loginmodule', ':mallmodule'
+include ':app', ':compilemodule', ':loginmodule', ':mallmodule', ':aidlservice'
